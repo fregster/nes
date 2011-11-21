@@ -2,12 +2,12 @@
 #
 
 CXX = g++
-CXXFLAGS = -lcrypto++ -I. -I./libs/crypto
+CXXFLAGS = -lcrypto++ -I. -I./libs/crypto/
 OUTPUT = -o build/
 LOG = 2> build/error.log
 
-nes_server_objects = ServerSocket.o Socket.o nes_server.o
-nes_client_objects = ClientSocket.o Socket.o nes_client.o
+nes_server_objects = ServerSocket.o Socket.o nesServer.o
+nes_client_objects = ClientSocket.o Socket.o nesSlient.o
 
 
 all : server client
@@ -23,8 +23,8 @@ client: $(nes_client_objects)
 Socket: Socket.cpp
 ServerSocket: ServerSocket.cpp
 ClientSocket: ClientSocket.cpp
-nes_server: nes_server.cpp
-nes_client: nes_client.cpp
+nesServer: nesServer.cpp
+nesClient: nesClient.cpp
 
 
 clean:

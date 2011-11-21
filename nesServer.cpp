@@ -2,7 +2,7 @@
 #include <iostream>
 #include "ServerSocket.h"
 #include "SocketException.h"
-#include "transform.cpp"
+#include "Transform.cpp"
 
 int main ( int argc, char* argv[] )
 {
