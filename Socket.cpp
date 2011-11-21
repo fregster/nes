@@ -109,6 +109,11 @@ bool Socket::accept ( Socket& new_socket ) const
 
 bool Socket::send ( const std::string s ) const
 {
+	//Hack for OSX building
+	#ifndef MSG_NOSIGNAL
+		#define MSG_NOSIGNAL SO_NOSIGPIPE
+	#endif
+
   int status = ::send ( m_sock, s.c_str(), s.size(), MSG_NOSIGNAL );
   if ( status == -1 )
     {

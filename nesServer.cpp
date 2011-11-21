@@ -24,6 +24,7 @@ int main ( int argc, char* argv[] )
 				while ( true )
 				{
 					bool varEncrypt (true);
+					//char* varSaltSent;
 					size_t varFound(0);
 					std::string varScope;
 					std::string varHash;
@@ -34,6 +35,9 @@ int main ( int argc, char* argv[] )
 					//Standard start buildup
 					//-e-scope-hash-salt--input
 					//sha256(salt+password+salt)
+
+					//Send the salt
+					new_sock << generateRandomString(varSalt, 16);
 
 					//Get and then process Data
 					new_sock >> data;

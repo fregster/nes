@@ -1,8 +1,13 @@
 # Makefile for the Network Encryption Service
 #
+# OSX requires:
+# sudo port install libcryptopp
 
 CXX = g++
-CXXFLAGS = -lcrypto++ -I. -I./libs/crypto/
+CXXFLAGS = -lcrypto++
+CXXFLASS = -lcryptopp
+# -L/opt/local/lib/ -lcrypto
+CXXFLAGS =  -I. -I./libs/crypto/
 OUTPUT = -o build/
 LOG = 2> build/error.log
 
@@ -10,7 +15,7 @@ nes_server_objects = ServerSocket.o Socket.o nesServer.o
 nes_client_objects = ClientSocket.o Socket.o nesSlient.o
 
 
-all : server client
+all : clean server client
 
 server: $(nes_server_objects)
 	$(CXX) $(OUTPUT)server_nes $(nes_server_objects) $(CXXFLAGS) $(LOG)

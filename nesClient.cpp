@@ -12,10 +12,16 @@ int main ( int argc, char* argv[] )
 		ClientSocket client_socket ( "localhost", 30000 );
 
 		std::string reply;
+		char* varSaltRecieved;
+		char* varSaltSent;
 
 		try
 		{
 			std::string varInput((std::istreambuf_iterator<char>(std::cin)), std::istreambuf_iterator<char>());
+
+			varSaltSent = generateRandomString(varSaltSent, 16)
+
+			client_socket >> varSaltRecieved;
 
 			client_socket << varInput;
 
