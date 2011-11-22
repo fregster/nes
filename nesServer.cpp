@@ -24,20 +24,24 @@ int main ( int argc, char* argv[] )
 				while ( true )
 				{
 					bool varEncrypt (true);
-					//char* varSaltSent;
 					size_t varFound(0);
 					std::string varScope;
 					std::string varHash;
-					std::string varSalt;
+					char* varSaltSentc;
+					std::string varSaltRecieved;
+					std::string varPassword;
 				  	std::string data;
 					std::string key;
 
 					//Standard start buildup
+					//Sent Salt1 which is used as part of the password hashing
 					//-e-scope-hash-salt--input
 					//sha256(salt+password+salt)
 
-					//Send the salt
-					new_sock << generateRandomString(varSalt, 16);
+					//Generate and end the salt
+					generateRandomString(varSaltSentc, 24);
+					std::string varSaltSent(varSaltSentc);
+					new_sock << varSaltSent;
 
 					//Get and then process Data
 					new_sock >> data;
@@ -58,7 +62,7 @@ int main ( int argc, char* argv[] )
 					//Get Hash and Salt to verify connection
 					varFound = data.find("-");
 		  			if (varFound != std::string::npos) {
-						varSalt = data.substr (0,int(varFound));
+		  				varSaltRecieved = data.substr (0,int(varFound));
 		    				data.erase (0,int(varFound)+1);
 					}
 
@@ -69,7 +73,8 @@ int main ( int argc, char* argv[] )
 					}
 
 					//Verify the connection
-					if(checkHash2Password(varHash, varSalt)) {
+		  			varPassword = "Password123!";
+					if(checkHash2Password(varHash, varSaltSent, varSaltRecieved, varPassword)) {
 						//Find termination string and drop everything before it
 			  			varFound = data.find("--");
 			  			if (varFound != std::string::npos) {

@@ -6,8 +6,8 @@
 CXX = g++
 CXXFLAGS = -lcrypto++
 CXXFLASS = -lcryptopp
-# -L/opt/local/lib/ -lcrypto
-CXXFLAGS =  -I. -I./libs/crypto/
+# -L/opt/local/lib/ -llibcryptopp
+CXXFLAGS = -L/opt/local/lib/ -llibcryptopp -I. -I./libs/crypto/
 OUTPUT = -o build/
 LOG = 2> build/error.log
 

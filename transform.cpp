@@ -55,7 +55,7 @@ std::string string2Hash( std::string varSaltPrefix, std::string varString, std::
 	std::string varDigest;
 	CryptoPP::SHA256 hash;
 
-	CryptoPP::StringSource foo(varSaltPrefix << varString << varSaltPostfix, true,
+	CryptoPP::StringSource foo(varSaltPrefix + varString + varSaltPostfix, true,
 		new CryptoPP::HashFilter(hash,
 			new CryptoPP::Base64Encoder (
 				new CryptoPP::StringSink(varDigest)
@@ -68,9 +68,9 @@ std::string string2Hash( std::string varSaltPrefix, std::string varString, std::
 
 bool checkHash2Password ( std::string& varHash, std::string& varSaltSent, std::string& varSaltRecieved,  std::string& varPassword)
 {
-	std::cout << " Salt Sent: " << varSaltSent << " Salt Recieved: " << varSaltRecieved << " Hash: " << varHash << " Result: " << string2Hash(varSaltSent + varPassword + varSaltRecieved);
+	std::cout << " Salt Sent: " << varSaltSent << " Salt Recieved: " << varSaltRecieved << " Hash: " << varHash << " Result: " << string2Hash(varSaltSent, varPassword, varSaltRecieved);
 
-	if(string2Hash(varSaltSent + varPassword + varSaltRecieved) == varHash){
+	if(string2Hash(varSaltSent, varPassword, varSaltRecieved) == varHash){
 		return true;
 	}
 	
