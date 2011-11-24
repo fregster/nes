@@ -9,3 +9,5 @@ libs/crypto-svn
 libs/crypto-old
 
 *.o
+
+.DS_Store

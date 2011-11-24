@@ -7,12 +7,13 @@ CXX = g++
 CXXFLAGS = -lcrypto++
 CXXFLASS = -lcryptopp
 # -L/opt/local/lib/ -llibcryptopp
-CXXFLAGS = -L/opt/local/lib/ -llibcryptopp -I. -I./libs/crypto/
+#CXXFLAGS = -L/opt/local/lib/ -llibcryptopp -I. -I./libs/crypto/
+CXXFLAGS = -Lcryptopp -lcrypto++ -I. -I/usr/include/cryptopp -I./libs/crypto/ 
 OUTPUT = -o build/
 LOG = 2> build/error.log
 
 nes_server_objects = ServerSocket.o Socket.o nesServer.o
-nes_client_objects = ClientSocket.o Socket.o nesSlient.o
+nes_client_objects = ClientSocket.o Socket.o nesClient.o
 
 
 all : clean server client
